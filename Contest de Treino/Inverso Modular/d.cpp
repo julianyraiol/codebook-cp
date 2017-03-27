@@ -1,7 +1,7 @@
 #include <bits/stdc++.h>
 #define _ ios_base::sync_with_stdio(false);
-#define MAXN 20001
-#define MOD 100000007
+#define MAXN 2001
+#define MOD 1300031
 
 using namespace std;
 
@@ -26,37 +26,15 @@ void inverso(ll a, ll b){
   x = x1; y = y1;
 }
 
-void frequencia(string s){
-  for (int i = 0;  i < s.size(); i++){
-    freq[s[i]-'a']++;
-  }
-}
-
-ll permuta(){
-  ll resp = 1;
-  for (int i = 0; i < 28; i++) {
-    if(freq[i] > 0){
-      inverso(fat[freq[i]], MOD);
-
-      if(x < 0) x+=MOD;
-      resp = (resp*x)%MOD;
-      x = 0;
-    }
-
-    freq[i] = 0;
-  }
-  return resp;
-}
-
 int main(){_
   string entrada;
   ll resp, n;
   init();
-  while (cin >> entrada, entrada != "0") {
-    frequencia(entrada);
+  while (cin >> entrada) {
+
     n = fat[entrada.size()];
-    
-    resp = (permuta()*n)%MOD;
+
+    resp = n * (inverso()) %MOD;
     cout << resp << endl;
 
   }
