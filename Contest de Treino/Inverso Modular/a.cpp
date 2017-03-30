@@ -39,8 +39,8 @@ void inverso(ll a, ll b){
 		return;
 	}
 	inverso(b, a%b);
-	ll x1 = y, y1 = x - (a/b)*y;
-	x = x1; y = y1;
+	ll xa = y, ya = x - (a/b)*y;
+	x = xa; y = ya;
 }
 
 void acha_primos(ll n){
