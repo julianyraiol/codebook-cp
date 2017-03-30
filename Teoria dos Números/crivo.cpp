@@ -15,9 +15,9 @@ void crivo(int n){
 	ehprimo.set();
 	
 	ehprimo[0] = ehprimo[1] = 0;
-	for(int i = 2; i <= n; i++)
+	for(int i = 2; i*i <= n; i++)
 		if(ehprimo[i])
-			for(int j = i+i; j < n; j+=i)
+			for(int j = i*i; j <= n; j+=i)
 				ehprimo[j] = 0;
 	
 	primos.push_back(2);
@@ -28,8 +28,10 @@ void crivo(int n){
 
 int main(){_
 	crivo(MAXN);
-	for(int i = 2; i < primos.size(); i++)
-		cout << primos[i] << " ";
-	cout << endl;
+	
+	cout << "primos[] = {" << endl;
+	for(int i = 0; i < primos.size(); i++)
+		cout << primos[i] << ",";
+	cout << "}" << endl;
 	return 0;
 }
