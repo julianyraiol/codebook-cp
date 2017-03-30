@@ -28,14 +28,14 @@ int binaria(int n){
 }
 
 ll exp(ll b, ll e, ll m){
-	ll x;
+	ll r;
 	if(e == 0) return 1;
 	if(e == 1) return b;
 	
-	if(e%2) return (b*exp(b, e/2, m))%m;
+	if(e%2) return (b*exp(b, e-1, m))%m;
 	else{
-		x = exp(b, e/2, m);
-		return (x*x)%m;
+		r = exp(b, e/2, m);
+		return (r*r)%m;
 	}
 }
 
@@ -45,12 +45,15 @@ void inverso(ll a, ll b){
 		return;
 	}
 	inverso(b, a%b);
-	int x1 = x, y1 = x - (a/b)*y;
+	int x1 = y, y1 = x - (a/b)*y;
 	x = x1; y = y1;
 }
 
-void acha_pares(ll n){
-	int meio;
+int main(){
+	int n, e, c, p, q, d, totiente;
+	int meio, flag = true;
+	cin >> n >> e >> c;
+	
 	for(int i = 0; primos[i] < n; i++){
 		meio = binaria(n/primos[i]);
 		
@@ -59,17 +62,11 @@ void acha_pares(ll n){
 			break;
 		}
 	}
-}
-
-int main(){
-	ll n, e, c, p, q, d, totiente;
-	int meio, flag = true;
-	cin >> n >> e >> c;
 	
-	acha_pares(n);
 	totiente = (p-1)*(q-1);
 	inverso(e, totiente);
 	d = x;
-	cout << exp(c, d, totiente) << endl;
+
+	cout << exp(c, d, n) << endl;
 	return 0;
 }
