@@ -1,13 +1,13 @@
 
-#include <bitset/stdc++.h>
+#include <bits/stdc++.h>
 #define _ ios_base::sync_with_stdio(false);
 #define MAXN 100000
 #define MOD 1000000007
 
 using namespace std;
 
-typedef vector<ll> vi;
 typedef long long ll;
+typedef vector<ll> vi;
 
 ll fat[MAXN], qnt_primos, x, y;
 bitset<MAXN> ehprimo;
@@ -25,7 +25,7 @@ void crivo(int n){
 
   ehprimo[0] = ehprimo[1] = 0;
   for (int i = 2; i*i <= n; i++)
-    if(ehprimo(i))
+    if(ehprimo[i])
       for (int j = i*i; j <= n; j+=i) {
           ehprimo[j] = 0;
       }
@@ -57,7 +57,7 @@ ll exp(int b, int e, int m){
 
   if(e%2) return (b*exp(b, e-1,m))%m;
   else{
-    r = exp(b, e/2,m))%m;
+    r = exp(b, e/2,m)%m;
     return (r*r)%m;
   }
 }
@@ -78,16 +78,16 @@ ll somaDiv(ll fat_n){
   while(pf*pf <= fat_n){
     int power = 0;
 
-    while (n%pf == 0) { n/=pf; power++;}
+    while (fat_n%pf == 0) { fat_n/=pf; power++;}
     inverso(pf-1 , MOD);
 
     if(x < 0) x+=MOD;
     ans*= ((ll)exp( (double)pf, power+1, MOD)-1)*x;
   }
 
-  inverso(n-1 , MOD);
+  inverso(fat_n-1 , MOD);
   if(x < 0) x+=MOD;
-  if(n!=1) ans*= ((ll)exp( (double)n, 2, MOD)-1)*x;
+  if(fat_n!=1) ans*= ((ll)exp( (double)fat_n, 2, MOD)-1)*x;
 
   return ans;
 }
@@ -95,6 +95,7 @@ ll somaDiv(ll fat_n){
 int main(){_
   ll n, fat_n, soma_fat;
   init();
+  crivo(MAXN);
 
   while(cin >> n){
     fat_n = fat[n];
