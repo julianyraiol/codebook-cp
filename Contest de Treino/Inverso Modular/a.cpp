@@ -45,12 +45,15 @@ void inverso(ll a, ll b){
 
 void acha_primos(ll n){
 	int flag = true;
-	for(int i = 0; i < MAXN && flag; i++){
-		p = primos[i]; q = n/primos[i];
+	for(int i = 0; primos[i]*primos[i] <= n && flag; i++){
 		
-		if(ehprimo(q) && (p*q == n)){
-			flag = false;
-		}
+		if(n%primos[i] == 0){
+			p = primos[i]; q = n/primos[i];
+			
+			if(ehprimo(q) && (p*q == n)){
+				flag = false;
+			}	
+		} 
 		
 	}	
 }
@@ -62,13 +65,14 @@ int main(){
 	
 	acha_primos(n);
 	
-	cout << p << " " << q << endl;
+
 	totiente = (p-1)*(q-1);
 	
-	cout << totiente << endl;
 	inverso(e, totiente);
 	d = x;
-
+	
+	if(d < 0) d+=totiente;
+	
 	cout << exp(c, d, n) << endl;
 	return 0;
 }
