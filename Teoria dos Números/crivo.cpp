@@ -28,10 +28,10 @@ void crivo(int n){
 
 int main(){_
 	crivo(MAXN);
-	
-	cout << "primos[] = {" << endl;
+	cout << primos.size() << endl;
+	/*cout << "primos[] = {" << endl;
 	for(int i = 0; i < primos.size(); i++)
 		cout << primos[i] << ",";
-	cout << "}" << endl;
+	cout << "}" << endl;*/
 	return 0;
 }

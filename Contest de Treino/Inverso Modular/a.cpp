@@ -1,6 +1,6 @@
 #include <bits/stdc++.h>
 #define _ ios_base::sync_with_stdio(false);
-#define MAXN 50001
+#define MAXN 5133
 
 using namespace std;
 
@@ -64,6 +64,8 @@ int main(){
 	
 	cout << p << " " << q << endl;
 	totiente = (p-1)*(q-1);
+	
+	cout << totiente << endl;
 	inverso(e, totiente);
 	d = x;
 
