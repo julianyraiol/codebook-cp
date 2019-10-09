@@ -3,11 +3,13 @@
 using namespace std;
 
 int main(){
-		double meal, tip, tax, total;
+		int n;
 
-		cin >> meal >> tip >> tax;
-		total = meal + (meal*tip)/100 + (meal*tax)/100;
-		cout << nearbyint(total) << endl;
+		cin >> n;
 
+    if ((n&1) || (n >= 6 && n <= 20))
+        cout << "Weird";
+    else
+        cout << "Not Weird";
 		return 0;
 }
