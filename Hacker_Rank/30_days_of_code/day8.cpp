@@ -3,12 +3,10 @@
 using namespace std;
 
 map<string, int> contacts;
-map<string, int>::iterator it;
 
 int main(){
     int n, contact_number;
-    string contact_name, contact, space;
-    stringstream ss;
+    string contact_name, name;
 
     cin >> n;
     cin.ignore(0);
@@ -18,10 +16,9 @@ int main(){
       contacts[contact_name] = contact_number;
     }
 
-    while(n--){
-        cin >> contact;
-        if(contacts[contact])
-          cout<< contact << "=" << contacts[contact] << endl;
+    while(cin >> name){
+        if(contacts[name])
+          cout<< name << "=" << contacts[name] << endl;
         else
           cout << "Not found" << endl;
     }
