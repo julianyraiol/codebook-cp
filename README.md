@@ -5,7 +5,7 @@
 Algoritmos que aprendo e coloco nesse repositório para posteridade. 
 
 - [30 Days of Code](https://github.com/julianyraiol/codebook/tree/master/Hacker_Rank/30_days_of_code)
-- [Tópicos de SQL](
+- [Tópicos de SQL](WIP)
 - [Teoria dos Números](https://github.com/julianyraiol/codebook/tree/master/Teoria%20dos%20N%C3%BAmeros)
 - [Busca Binária](https://github.com/julianyraiol/codebook/tree/master/Busca%20Bin%C3%A1ria)
 
