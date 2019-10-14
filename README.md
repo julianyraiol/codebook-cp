@@ -2,7 +2,7 @@
 
 ![neil](https://media.giphy.com/media/xT5LMuGTSzesTuWLgQ/giphy.gif)
 
-Algoritmos que aprendo e coloco nesse repositório para posteridade. 
+Algoritmos que gosto de estudar e coloco nesse repositório para posteridade. 
 
 - [30 Days of Code](https://github.com/julianyraiol/codebook/tree/master/Hacker_Rank/30_days_of_code)
 - [Tópicos de SQL](WIP)
