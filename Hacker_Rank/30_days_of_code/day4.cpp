@@ -10,7 +10,6 @@ class Person{
     };
 
     Person::Person(int initialAge){
-        // Add some more code to run some checks on initialAge
         if(initialAge < 0){
           age = 0;
           cout << "Age is not valid, setting age to 0." << endl;
