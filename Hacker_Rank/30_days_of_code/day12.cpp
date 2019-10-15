@@ -38,17 +38,10 @@ class Student :  public Person{
         *   id - An integer denoting the Person's ID number.
         *   scores - An array of integers denoting the Person's test scores.
         */
-        // Write your constructor here
 
         Student(string firstName, string lastName, int id, vector<int> scores):Person(firstName, lastName, id){
             this->testScores = scores;
         }
-
-        /*	
-        *   Function Name: calculate
-        *   Return: A character denoting the grade.
-        */
-        // Write your function here
 
         int median_score(){
             int sum = 0;
@@ -59,6 +52,11 @@ class Student :  public Person{
             
             return sum/size;
         }
+
+        /*	
+        *   Function Name: calculate
+        *   Return: A character denoting the grade.
+        */
 
         char calculate(){
             int median = this->median_score();

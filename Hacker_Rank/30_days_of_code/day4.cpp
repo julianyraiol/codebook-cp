@@ -29,7 +29,6 @@ class Person{
     }
 
     void Person::yearPasses(){
-        // Increment the age of the person in here
         this->age++;
     }
 
