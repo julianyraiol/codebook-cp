@@ -6,12 +6,12 @@ using namespace std;
 struct Node{
     Node* children[ALPHABET_SIZE];
     bool finalized;
+    Node(){
+        for(int i = 0; i < ALPHABET_SIZE; i++)
+            children[i] = NULL;
+        finalized = false;
+    }
 };
-
-void init(Node root){
-    for(int i = 0; i < ALPHABET_SIZE; i++)
-        root.children[i] = NULL;
-}
 
 void insert(Node* root, string word){
     
@@ -27,14 +27,13 @@ void insert(Node* root, string word){
     root->finalized = true;
 }
 
-void print(Node* root, string str, int level){
+void print(Node* root, char str[ALPHABET_SIZE], int level){
     if(root->finalized == true)
         cout << str << endl;
     else{
         for(int i = 0; i < ALPHABET_SIZE; i++){
             if(root->children[i] != NULL){
-                str[level] = i + 'a';
-                cout << str << endl;
+                str[level] = char('a'+i) ;
                 print(root->children[i], str, level+1);
             }
         }
@@ -43,8 +42,8 @@ void print(Node* root, string str, int level){
 
 int main(){
     Node* root = new Node();
-    string str;
-    insert(root, "a");
+    char str[ALPHABET_SIZE];
+    insert(root, "c");
     insert(root, "abb");
     insert(root, "abbccc");
     print(root, str, 0);
