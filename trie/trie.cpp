@@ -3,49 +3,18 @@
 
 using namespace std;
 
-class Node{
-    public:
+struct Node{
     Node* children[ALPHABET_SIZE];
     bool finalized;
-
-    Node(){
-    
-        finalized = false;
-        for(int i = 0; i < ALPHABET_SIZE; i++){
-            children[i] = NULL;
-        }
-    }
-
-    void print_children(Node* root, string str, int level){
-        if(root->finalized == true)
-            cout << str << endl;
-        else{
-            for(int i = 0; i < ALPHABET_SIZE; i++){
-                if(root->children[i] != NULL){
-                    str[level] = i + 'a';
-                    cout << str << endl;
-                    print_children(root->children[i], str, level+1);
-                }
-            }
-        }
-    }
-
 };
 
-class Trie{
-    public:
-        Node* root;
-    
-        Trie();
-        void insert(string);
-        void search(string);
-};
-
-Trie::Trie(){
-   root = new Node();
+void init(Node root){
+    for(int i = 0; i < ALPHABET_SIZE; i++)
+        root.children[i] = NULL;
 }
 
-void Trie::insert(string word){
+void insert(Node* root, string word){
+    
     char letter;
     for(int i = 0; i < word.size(); i++){
         letter = word[i];
@@ -58,16 +27,25 @@ void Trie::insert(string word){
     root->finalized = true;
 }
 
-void Trie::search(string str){
-    root->print_children(root, str, 0);
+void print(Node* root, string str, int level){
+    if(root->finalized == true)
+        cout << str << endl;
+    else{
+        for(int i = 0; i < ALPHABET_SIZE; i++){
+            if(root->children[i] != NULL){
+                str[level] = i + 'a';
+                cout << str << endl;
+                print(root->children[i], str, level+1);
+            }
+        }
+    }
 }
 
 int main(){
-    Trie* root = new Trie();
+    Node* root = new Node();
     string str;
-    root->insert("a");
-    root->insert("aff");
-    root->insert("aaaell");
-    root->search(str);
+    insert(root, "a");
+    insert(root, "abb");
+    insert(root, "abbccc");
+    print(root, str, 0);
 }
-
