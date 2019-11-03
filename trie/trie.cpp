@@ -2,87 +2,55 @@
 #define ALPHABET_SIZE 26
 
 using namespace std;
-
-int cont; 
+ 
 struct Node{
     struct Node* children[ALPHABET_SIZE];
+    char caracter;
     bool finalized;
-};
 
-Node* init(){
-    Node* root = new Node();
-    for(int i = 0; i < ALPHABET_SIZE; i++)
-        root->children[i] = NULL;
-        
-    root->finalized = false;
-    return root;
-}
+    Node(){
+        memset(children, false, sizeof(children));
+        finalized = false;
+    }
+};
 
 void insert(Node *root, string word){
     
-    int letter;
-    for(int i = 0; i < word.size(); i++){
-        letter = word[i]-'a';
+    int index;
+    for(char letter:word){
+        index = letter-'a';
         
-        if(root->children[letter] == NULL){
-            root->children[letter] = init();
+        if(!root->children[index]){
+            root->children[index] = new Node();
+            root->children[index]->caracter = letter;
         }
-        root = root->children[letter];
+        root = root->children[index];
     }
     root->finalized = true;
 }
 
-void print(Node* root, string str) 
+void print(Node* root, string str, int spaces) 
 { 
-    if (root->finalized != false)  
-    { 
+    if (root->finalized != false){ 
         cout << str << endl; 
     } 
 
-    for (int i = 0; i < ALPHABET_SIZE; i++)  
-    { 
-        if (root->children[i])  
-        { 
-            str.push_back(i + 'a'); 
-            print(root->children[i], str); 
+    for (Node* child:root->children){ 
+        if (child){ 
+            str.push_back(child->caracter); 
+            print(child, str, spaces + 4); 
             str.pop_back();
         } 
     } 
 } 
 
-bool search(Node* root, string word){
-
-    Node *aux_root = root;
-    for(int i = 0; i < word.length(); i++){
-        int letter = word[i] - 'a';
-        if(!aux_root->children[letter]){ 
-            return 0;
-        }
-           
-        aux_root = aux_root->children[letter];
-    }
-
-    cout << ("======") << endl;
-
-    if (aux_root != NULL && aux_root->finalized){
-        print(aux_root, word);
-    }
-    return (aux_root != NULL && aux_root->finalized);
-}
-
-
 int main(){
-    Node* root = init();
+    Node* root = new Node();
     string str;
     
-    insert(root, "ac");
-    insert(root, "accc");
-    insert(root, "acccd");
-    insert(root, "abb");
-    insert(root, "cbb");
-    insert(root, "cbbdd");
-    insert(root, "abbccc");
-    print(root, str);
-    cout << search(root, "ac") << endl;
-    
+    insert(root, "aaaa");
+    insert(root, "abbbb");
+    insert(root, "abc");
+    print(root, str, 0);
+
 }
